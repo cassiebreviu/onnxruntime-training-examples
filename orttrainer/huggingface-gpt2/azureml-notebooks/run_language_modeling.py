@@ -24,7 +24,6 @@ import math
 import os
 from dataclasses import dataclass, field
 from typing import Optional
-from pip._internal import main as pipmain
 from datasets import load_dataset
 from azureml.core import Workspace, Dataset
 
@@ -143,9 +142,7 @@ def main():
     # See all possible arguments in src/transformers/training_args.py
     # or by passing the --help flag to this script.
     # We now keep distinct sets of args, for a cleaner separation of concerns.
-    pipmain(['install', 'transformers'])
-    pipmain(['install', 'datasets'])
-    from datasets import load_dataset
+
     parser = HfArgumentParser((ModelArguments, DataTrainingArguments, TrainingArguments))
     model_args, data_args, training_args = parser.parse_args_into_dataclasses()
     print(training_args)
